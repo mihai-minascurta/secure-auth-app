@@ -19,13 +19,13 @@
   <img src="https://placehold.co/1000x2/C3B550/C3B550.png" width="100%" height="2" alt="Yellow Divider"/>
 </h3>
 
-A robust user authentication system that demonstrates modern security practices. The application handles user registration, encrypted password storage, and protected routes, ensuring that sensitive data is only accessible to authenticated users.
+A professional-grade authentication system built with Flask, focusing on industry-standard security protocols. The application provides a secure environment for user registration and login, utilizing advanced encryption to safeguard user credentials.
 
-**Key Features:**
-* **🔐 Password Hashing:** Uses `Werkzeug` to salt and hash passwords, preventing plain-text exposure in the database.
-* **session Management:** Implements `Flask-Login` to track user sessions and restrict access to specific endpoints.
-* **📁 Database Integration:** Leverages `Flask-SQLAlchemy` for persistent and structured user data storage.
-* **📥 File Downloads:** Includes a secure mechanism for authenticated users to download protected assets.
+**Technical Logic (Verified):**
+* **🔐 Cryptographic Hashing:** Implements `Werkzeug.security` to generate salted password hashes (pbkdf2:sha256), ensuring that plain-text passwords are never stored in the database.
+* **🛡️ Session Management:** Uses `Flask-Login` to manage user sessions, providing persistent authentication across different pages and browser restarts.
+* **🚫 Access Control:** Employs the `@login_required` decorator to protect sensitive routes (like the "Secrets" page), redirecting unauthorized users back to the login screen.
+* **📁 Database Schema:** Built with `SQLAlchemy`, featuring a structured User model that handles unique emails and hashed credentials efficiently.
 
 <br>
 
@@ -36,17 +36,12 @@ A robust user authentication system that demonstrates modern security practices.
 
 ```text
 secure-auth-app/
-├── main.py                     # App logic, Routes & Auth configuration
-├── instance/                   # Database instance folder
-│   └── users.db                # SQLite database for user credentials
-├── templates/                  # HTML Frontend
-│   ├── login.html
-│   ├── register.html
-│   └── secrets.html
-└── static/                     # CSS & Static assets (files to download)
-
+├── main.py                     # Security logic, Flask routes & Auth setup
+├── instance/                   # Database instance storage
+│   └── users.db                # SQLite database for encrypted credentials
+├── templates/                  # Secure HTML templates (login, register, secrets)
+└── static/                     # CSS & Protected assets for download
 ```
-
 <h3>
   🧠 Code Review & Complexity<br>
   <img src="https://placehold.co/1000x2/C3B550/C3B550.png" width="100%" height="2" alt="Yellow Divider"/>
@@ -68,19 +63,19 @@ secure-auth-app/
 <br>
 
 **🟢 High-Impact Wins:**
-* **Security First:** Excellent implementation of password salting and hashing, which is vital for any real-world app.
-* **Access Control:** Smart use of decorators (like `@login_required`) to protect sensitive routes.
+* **Security Standards:** Correct use of `generate_password_hash` and `check_password_hash`, avoiding common beginner security pitfalls.
+* **Asset Protection:** Secure implementation of file downloads that are only accessible to verified users.
 
-**🔧 Key Recommendations:**
-* **Validation:** Add stronger form validation to ensure users don't register with empty fields.
-* **Flash Messages:** Use Flask's `flash()` method for better user feedback.
+**🔧 Technical Debt:**
+* **CSRF Protection:** While the authentication is solid, adding `Flask-WTF` for CSRF protection would be the next step to make it enterprise-ready.
+* **Validation:** Form input could be further hardened by checking for password complexity (length, symbols) during registration.
 
 <br>
 
 <div align="center">
   <img src="https://img.shields.io/badge/🤖_AI_Contribution-Project_HTML_%26_CSS-50FA7B?style=flat-square" alt="AI Note">
   <br>
-  <samp style="font-size: 12px; color: #6272a4;">The HTML and CSS templates within this project were co-authored with AI.</samp>
+  <samp style="font-size: 12px; color: #6272a4;">Any custom HTML/CSS used in this project's templates was co-authored with AI.</samp>
 </div>
 
 <br>
